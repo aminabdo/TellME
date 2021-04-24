@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "670178968557",
+    "project_id": "tellme-540e3",
+    "storage_bucket": "tellme-540e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670178968557:android:63102378997594f469dde4",
+        "android_client_info": {
+          "package_name": "com.codecaique.gradproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670178968557-56eidhm1dqs1t5tgfllcgnu2v858sqt0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRcLAxcxwDVAWXQ93YDh4IAiHmjNObQt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670178968557-56eidhm1dqs1t5tgfllcgnu2v858sqt0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

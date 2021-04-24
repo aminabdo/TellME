@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tell Me</string>
+    <string name="enter_text">enter text</string>
+    <string name="translate">translate</string>
+    <string name="text">text</string>
+    <string name="voice">voice</string>
+    <string name="error1">you should add this word to your data base</string>
+    <string name="error2">لا يوجد صوره لهذه الكلمه</string>
+</resources>

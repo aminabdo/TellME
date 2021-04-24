@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tell Me</string>
+    <string name="enter_text">ادخل النص</string>
+    <string name="translate">ترجم</string>
+    <string name="text">نص</string>
+    <string name="voice">صوت</string>
+    <string name="error1">هذه الكلمه غير مترجمه يرجي اضافتها لقاعده البيانات</string>
+    <string name="error2">لا يوجد صوره لهذه الكلمه</string>
+</resources>
