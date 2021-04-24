@@ -26,6 +26,7 @@ class TextActivity : AppCompatActivity() {
 
     var database = FirebaseDatabase.getInstance()
     var myRef = database.getReference("message")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.e(TAG, "onCreate: ")
         super.onCreate(savedInstanceState)
@@ -47,15 +48,18 @@ class TextActivity : AppCompatActivity() {
         init()
         read()
     }
+
     fun init(){
         database = FirebaseDatabase.getInstance()
         myRef = database.getReference("message")
 
     }
-    fun write(){
-        myRef.push().setValue(DataRow("تجربة", "test", ""))
+
+    fun write(msg_arabic:String ,msg_english:String , img:String ){
+        myRef.push().setValue(DataRow(msg_arabic, msg_english, img))
     }
     var row:ArrayList<DataRow?> = ArrayList<DataRow?>()
+
     fun read(){
         row = ArrayList<DataRow?>()
         myRef.addValueEventListener(object : ValueEventListener {
@@ -82,6 +86,7 @@ class TextActivity : AppCompatActivity() {
             }
         })
     }
+
     fun trans(view: View) {
 
         var data = search(et_text?.text.toString())
@@ -124,7 +129,6 @@ class TextActivity : AppCompatActivity() {
             imageView?.setImageDrawable(null)
         }
     }
-
 
     fun search(search: String):DataRow?{
         for(d in row){
