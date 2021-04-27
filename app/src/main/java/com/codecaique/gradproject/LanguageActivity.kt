@@ -63,6 +63,8 @@ class LanguageActivity : AppCompatActivity() {
             apply()
         }
 
+
+
     }
 
     fun arabic(view: View) {

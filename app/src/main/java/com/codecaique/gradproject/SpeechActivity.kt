@@ -1,7 +1,10 @@
 package com.codecaique.gradproject
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.util.Log
@@ -33,6 +36,18 @@ class SpeechActivity : AppCompatActivity() {
         var language = "ar-EG"
         language = "us-US";
 
+        var langa = this.getPreferences(Context.MODE_PRIVATE).getString("language","english");
+
+        val resources: Resources = this.getResources()
+        val config: Configuration = resources.getConfiguration()
+
+        if(config.locale.language.toString().contains("ar")){
+            language = "ar-sa" ;
+        }else{
+            language = "us-US";
+        }
+        Log.e(TAG, "onCreate: langa" +langa)
+        Log.e(TAG, "onCreate: language ${language}" )
         setContentView(R.layout.activity_speech)
         textView = findViewById<View>(R.id.text) as TextView?
         imageView = findViewById<View>(R.id.image) as ImageView?
@@ -49,6 +64,8 @@ class SpeechActivity : AppCompatActivity() {
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, language);
                 intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, language);
                 startActivityForResult(intent, REQ_CODE)
+
+
             } catch (a: ActivityNotFoundException) {
                 Toast.makeText(applicationContext,
                     "Sorry your device not supported",
@@ -63,6 +80,8 @@ class SpeechActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        Log.e(TAG, "onActivityResult: $requestCode")
         when (requestCode) {
             REQ_CODE -> {
                 if (resultCode == RESULT_OK && null != data) {
@@ -70,19 +89,19 @@ class SpeechActivity : AppCompatActivity() {
                     var txt:String? = result?.get(0)
 
                     if(txt == null){
-                        textView?.setText("هذه الكلمه غير مترجمه يرجي اضافتها لقاعده البيانات");
+                        textView?.setText(this.resources.getString(R.string.error1));
                         imageView?.setImageDrawable(null)
                     }
                     var data = search(txt!!)
                     if(data == null){
-                        textView?.setText("هذه الكلمه غير مترجمه يرجي اضافتها لقاعده البيانات");
+                        textView?.setText(this.resources.getString(R.string.error1));
                         imageView?.setImageDrawable(null)
                         return
                     }
                     else{
 
                         if(data.imgLink == "" || data.imgLink == null){
-                            textView?.setText("لا يوجد صوره لهذه الكلمه");
+                            textView?.setText(this.resources.getString(R.string.error2));
                             return
                         }
                         textView?.setText("");
@@ -148,11 +167,18 @@ class SpeechActivity : AppCompatActivity() {
         })
     }
     fun search(search: String):DataRow?{
+
+        Log.e(TAG, "search: $search")
         for(d in row){
+            Log.e(TAG, "search: en -> ${d?.msg_english}")
+            Log.e(TAG, "search: ar -> ${d?.msg_arabic}")
             if(d?.msg_arabic?.contains(search) == true || d?.msg_english?.contains(search) == true){
+                Log.e(TAG, "search:done ---? $search")
                 return d
             }
         }
+
+
         return null ;
     }
 }
